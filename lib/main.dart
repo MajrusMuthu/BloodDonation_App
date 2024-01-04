@@ -1,4 +1,6 @@
-// ignore_for_file: unused_import, prefer_const_constructors
+
+// ignore_for_file: prefer_const_constructors
+
 import 'package:bloodapp/Blood_App/Home_Page.dart';
 import 'package:bloodapp/Blood_App/Input_Page.dart';
 import 'package:bloodapp/Blood_App/Update.dart';
@@ -22,9 +24,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'My App',
       routes: {
-        '/home': (context) => HomePage(),
+        '/home': (context) =>  HomePage(),
         '/add': (context) => InputPage(),
-        '/Update': (context) => Update()
+        '/update': (context) => UpdateDonor()
       },
       initialRoute: '/',
       debugShowCheckedModeBanner: false,

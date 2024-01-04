@@ -114,7 +114,7 @@ class HomePageState extends State<HomePage> {
                               children: [
                                 IconButton(
                                   onPressed: () {
-                                    Navigator.pushNamed(context, '/Update',
+                                    Navigator.pushNamed(context, '/update',
                                         arguments: {
                                           'name': donorSnap['name'],
                                           'phone':

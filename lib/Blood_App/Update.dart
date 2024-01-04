@@ -3,16 +3,17 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-class Update extends StatefulWidget {
-  const Update({super.key});
+class UpdateDonor extends StatefulWidget {
+  const UpdateDonor({super.key});
 
   @override
-  State<Update> createState() => UpdateState();
+  State<UpdateDonor> createState() => UpdateDonorState();
 }
 
-class UpdateState extends State<Update> {
+class UpdateDonorState extends State<UpdateDonor> {
   TextEditingController donorName = TextEditingController();
   TextEditingController donorPhone = TextEditingController();
+
   void updateDonor(docId) {
     final data = {
       'name': donorName.text,
@@ -22,7 +23,7 @@ class UpdateState extends State<Update> {
     donor.doc(docId).update(data).then((value) => Navigator.pop(context));
   }
 
-  final List<String> BloodGroups = [
+  final List<String> bloodGroups = [
     'A+',
     'A-',
     'B+',
@@ -32,7 +33,7 @@ class UpdateState extends State<Update> {
     'AB+',
     'AB-'
   ];
-  String? selectedGroup = 'A+';
+  String? selectedGroup;
   final CollectionReference donor =
       FirebaseFirestore.instance.collection("donor");
 
@@ -43,7 +44,6 @@ class UpdateState extends State<Update> {
     donorPhone.text = args['phone'];
     selectedGroup = args['group'];
     final docId = args['id'];
-
     return Scaffold(
       appBar: AppBar(
         title: const Text("Update Donor Details",
@@ -103,16 +103,16 @@ class UpdateState extends State<Update> {
                 value: selectedGroup,
                 hint: const Text("Select your Blood Group"),
                 dropdownColor: Colors.grey.shade100,
-                items: BloodGroups.map(
-                  (group) => DropdownMenuItem(
-                    value: group,
-                    child: Text(group),
-                  ),
-                ).toList(),
+                items: bloodGroups
+                    .map(
+                      (group) => DropdownMenuItem(
+                        value: group,
+                        child: Text(group),
+                      ),
+                    )
+                    .toList(),
                 onChanged: (val) {
-                  setState(() {
-                    selectedGroup = val as String?;
-                  });
+                  selectedGroup = val;
                 },
               ),
             ),

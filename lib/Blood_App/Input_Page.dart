@@ -13,7 +13,7 @@ class InputPage extends StatefulWidget {
 class InputPageState extends State<InputPage> {
   TextEditingController donorName = TextEditingController();
   TextEditingController donorPhone = TextEditingController();
-  final List<String> BloodGroups = [
+  final List<String> bloodGroups = [
     'A+',
     'A-',
     'B+',
@@ -23,7 +23,7 @@ class InputPageState extends State<InputPage> {
     'AB+',
     'AB-'
   ];
-  String? selectedGroup = 'A+';
+  String? selectedGroup;
   final CollectionReference donor =
       FirebaseFirestore.instance.collection("donor");
 
@@ -96,7 +96,7 @@ class InputPageState extends State<InputPage> {
                 elevation: 10,
                 hint: const Text("Select your Blood Group"),
                 dropdownColor: Colors.grey.shade100,
-                items: BloodGroups.map(
+                items: bloodGroups.map(
                   (group) => DropdownMenuItem(
                     value: group,
                     child: Text(group),
